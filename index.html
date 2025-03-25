@@ -1,1 +1,27 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Jogo de Par ou Ímpar</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+    <div class="container">
+        <h1>Jogo de Par ou Ímpar</h1>
+        <div class="game">
+            <div class="choice">
+                <button id="par" class="btn">Par</button>
+                <button id="impar" class="btn">Ímpar</button>
+            </div>
+            <input type="number" id="userNumber" placeholder="Escolha um número de 0 a 10" min="0" max="10" />
+            <button id="playButton" class="btn">Jogar</button>
+        </div>
+        <div id="result" class="result">
+            <p id="message"></p>
+        </div>
+    </div>
 
+    <script src="script.js"></script>
+</body>
+</html>
