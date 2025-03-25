@@ -1,27 +1,55 @@
-<!DOCTYPE html>
-<html lang="pt-br">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Jogo de Par ou Ímpar</title>
-    <link rel="stylesheet" href="style.css">
-</head>
-<body>
-    <div class="container">
-        <h1>Jogo de Par ou Ímpar</h1>
-        <div class="game">
-            <div class="choice">
-                <button id="par" class="btn">Par</button>
-                <button id="impar" class="btn">Ímpar</button>
-            </div>
-            <input type="number" id="userNumber" placeholder="Escolha um número de 0 a 10" min="0" max="10" />
-            <button id="playButton" class="btn">Jogar</button>
-        </div>
-        <div id="result" class="result">
-            <p id="message"></p>
-        </div>
-    </div>
+import java.util.Random;
+import java.util.Scanner;
 
-    <script src="script.js"></script>
-</body>
-</html>
+public class ParOuImpar {
+
+    public static void main(String[] args) {
+        Scanner scanner = new Scanner(System.in);
+        Random random = new Random();
+
+        // Explicação inicial
+        System.out.println("Jogo de Par ou Ímpar!");
+        System.out.println("Escolha entre 'Par' ou 'Ímpar'");
+        
+        // Receber a escolha do jogador
+        System.out.print("Digite sua escolha (Par ou Ímpar): ");
+        String escolhaJogador = scanner.nextLine().toLowerCase();
+
+        // Verificar se a escolha é válida
+        if (!escolhaJogador.equals("par") && !escolhaJogador.equals("impar")) {
+            System.out.println("Escolha inválida! Digite 'Par' ou 'Ímpar'.");
+            return;
+        }
+
+        // Jogador escolhe um número entre 0 e 10
+        System.out.print("Escolha um número de 0 a 10: ");
+        int numeroJogador = scanner.nextInt();
+
+        // Verificar se o número está no intervalo correto
+        if (numeroJogador < 0 || numeroJogador > 10) {
+            System.out.println("Número inválido! Escolha um número entre 0 e 10.");
+            return;
+        }
+
+        // O computador escolhe um número aleatório de 0 a 10
+        int numeroComputador = random.nextInt(11); // Gera um número entre 0 e 10
+
+        // Mostrar os números escolhidos
+        System.out.println("Você escolheu o número: " + numeroJogador);
+        System.out.println("O computador escolheu o número: " + numeroComputador);
+
+        // Calcular o total e determinar se é par ou ímpar
+        int total = numeroJogador + numeroComputador;
+        boolean totalPar = total % 2 == 0;
+
+        // Verificar se o jogador ganhou
+        boolean jogadorGanhou = (escolhaJogador.equals("par") && totalPar) || (escolhaJogador.equals("impar") && !totalPar);
+
+        // Mostrar o resultado
+        if (jogadorGanhou) {
+            System.out.println("Total: " + total + " (Você VENCEU!)");
+        } else {
+            System.out.println("Total: " + total + " (Você PERDEU!)");
+        }
+    }
+}
